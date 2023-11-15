@@ -7,12 +7,14 @@ class NewExpense extends StatefulWidget {
   _NewExpenseState createState() => _NewExpenseState();
 }
 
-//11:10
 class _NewExpenseState extends State<NewExpense> {
   // Controller
   final _nameController = TextEditingController();
   final _amountController = TextEditingController();
   DateTime date = DateTime.now();
+  List<String> list = <String>['Food', 'Education', 'Travel', 'Work'];
+  String selectedCategory = '';
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -38,6 +40,7 @@ class _NewExpenseState extends State<NewExpense> {
                         color: Color.fromARGB(255, 110, 110, 110))),
                 prefixText: "₺"),
           ),
+          const Spacer(),
           IconButton(
               onPressed: () async {
                 {
@@ -77,6 +80,39 @@ class _NewExpenseState extends State<NewExpense> {
                   fontFamily: 'Raleway',
                   color: Color.fromARGB(255, 110, 110,
                       110))), // seçilen tarihi formatlayarak yazdırmak..
+          const Spacer(),
+          Row(
+            children: [
+              Text('Kategori Seciniz:',
+                  style: TextStyle(
+                      fontFamily: 'Raleway',
+                      color: Color.fromARGB(255, 110, 110, 110))),
+              const Spacer(),
+              DropdownButton<String>(
+                value: list[0],
+                icon: const Icon(Icons.arrow_downward),
+                elevation: 16,
+                style: const TextStyle(color: Colors.deepPurple),
+                underline: Container(
+                  height: 2,
+                  color: Colors.deepPurpleAccent,
+                ),
+                onChanged: (String? value) {
+                  // This is called when the user selects an item.
+                  setState(() {
+                    selectedCategory = value!;
+                  });
+                },
+                items: list.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              ),
+            ],
+          ),
+          const Spacer(),
           ElevatedButton(
             onPressed: () {
               print("Kayıt başarılı: ${_nameController.text}");
@@ -84,9 +120,9 @@ class _NewExpenseState extends State<NewExpense> {
             child: const Text(("Kaydet"),
                 style: TextStyle(
                     fontFamily: 'Raleway',
-                    color: Color.fromARGB(255, 110, 110, 110))),
+                    color: Color.fromARGB(255, 255, 255, 255))),
             style: ElevatedButton.styleFrom(shape: StadiumBorder()),
-          )
+          ),
         ],
       ),
     );
