@@ -26,32 +26,36 @@ class _NewExpenseState extends State<NewExpense> {
       showDialog(
           context: context,
           builder: (ctx) {
-            return Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(color: Colors.green, spreadRadius: 3),
-                ],
-              ),
-              child: AlertDialog(
-                backgroundColor: Colors.red,
-                title: const Text(
-                  "Validation Error",
-                  style: TextStyle(color: Colors.black, fontFamily: 'Raleway'),
+            return AlertDialog(
+              shape: RoundedRectangleBorder(
+                side: BorderSide(
+                  color: Colors.deepPurpleAccent, //<-- SEE HERE
                 ),
-                content: const Text(
-                  "Please fill all blank areas.",
-                  style: TextStyle(color: Colors.black, fontFamily: 'Raleway'),
-                ),
-                actions: [
-                  TextButton(
-                      onPressed: () {
-                        Navigator.pop(ctx);
-                      },
-                      child: const Text("Okay"))
-                ],
+                borderRadius: BorderRadius.circular(35.0),
               ),
+              backgroundColor: Color.fromARGB(255, 12, 2, 100),
+              title: const Text(
+                "Validation Error",
+                style: TextStyle(
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    fontFamily: 'Raleway'),
+              ),
+              content: const Text(
+                "Please fill all blank areas.",
+                style: TextStyle(
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    fontFamily: 'Raleway'),
+              ),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.pop(ctx);
+                    },
+                    child: const Text("Okay",
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 255, 255, 255),
+                            fontFamily: 'Raleway')))
+              ],
             );
           });
     } else {
