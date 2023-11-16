@@ -4,13 +4,13 @@ import 'package:uuid/uuid.dart';
 
 const uuid = Uuid();
 
-enum Category { food, education, travel, work }
+enum Category { Food, Education, Travel, Work }
 
 const categoryIcons = {
-  Category.food: Icons.food_bank,
-  Category.education: Icons.cast_for_education,
-  Category.travel: Icons.car_rental,
-  Category.work: Icons.business
+  Category.Food: Icons.food_bank,
+  Category.Education: Icons.cast_for_education,
+  Category.Travel: Icons.car_rental,
+  Category.Work: Icons.business
 };
 
 class Expense {
